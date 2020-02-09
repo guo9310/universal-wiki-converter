@@ -1,11 +1,8 @@
 package regexdemo;
 
-import javax.swing.UIManager;
-
 import org.apache.log4j.Logger;
 
-import sun.tools.tree.ThisExpression;
-
+import javax.swing.*;
 import java.awt.*;
 
 /**
