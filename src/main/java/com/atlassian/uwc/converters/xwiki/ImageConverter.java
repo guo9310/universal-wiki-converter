@@ -18,6 +18,7 @@ public class ImageConverter extends BaseConverter {
 	public void convert(Page page) {
 		log.info("Converting Image Syntax -- starting");
 		String input = page.getOriginalText();
+		input = input.replaceAll("\\!\\[\\[", "\\[\\[image:");
 		String converted = convertImages(input);
 		converted = adjustSurroundingWS(converted);
 		page.setConvertedText(converted);
@@ -25,9 +26,9 @@ public class ImageConverter extends BaseConverter {
 	}
 	
 	Pattern image = Pattern.compile("" +
-			"\\{image:" +
-			"([^}]+)" +
-			"\\}"
+			"\\[\\[image:" +
+			"(.+)" +
+			"\\]\\]"
 			);
 	protected String convertImages(String input) {
 		String parent = findParentPage(input);
