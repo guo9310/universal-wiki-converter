@@ -1,41 +1,17 @@
 package com.atlassian.uwc.exporters;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.rmi.RemoteException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
+import com.atlassian.confluence.extra.sharepoint.wrapper.SharePointWebServicesWrapper;
+import com.atlassian.uwc.ui.ConverterEngine;
+import com.microsoft.sharepoint.webservices.lists.*;
 import org.apache.axis.message.MessageElement;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
-import sun.tools.tree.AddExpression;
-
-import com.atlassian.confluence.extra.sharepoint.wrapper.SharePointWebServicesWrapper;
-import com.atlassian.uwc.ui.ConverterEngine;
-import com.microsoft.sharepoint.webservices.lists.GetList;
-import com.microsoft.sharepoint.webservices.lists.GetListCollection;
-import com.microsoft.sharepoint.webservices.lists.GetListCollectionResponse;
-import com.microsoft.sharepoint.webservices.lists.GetListCollectionResponseGetListCollectionResult;
-import com.microsoft.sharepoint.webservices.lists.GetListItems;
-import com.microsoft.sharepoint.webservices.lists.GetListItemsQuery;
-import com.microsoft.sharepoint.webservices.lists.GetListItemsQueryOptions;
-import com.microsoft.sharepoint.webservices.lists.GetListItemsResponse;
-import com.microsoft.sharepoint.webservices.lists.GetListItemsResponseGetListItemsResult;
-import com.microsoft.sharepoint.webservices.lists.GetListItemsViewFields;
-import com.microsoft.sharepoint.webservices.lists.GetListResponse;
-import com.microsoft.sharepoint.webservices.lists.ListsSoap12Stub;
+import java.io.*;
+import java.rmi.RemoteException;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * exports pages from a Sharepoint Server to indivdual files.
