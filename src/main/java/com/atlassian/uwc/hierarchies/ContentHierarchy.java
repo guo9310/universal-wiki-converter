@@ -1,20 +1,11 @@
 package com.atlassian.uwc.hierarchies;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.Properties;
-import java.util.TreeMap;
-import java.util.Vector;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import com.atlassian.uwc.ui.Page;
 import org.apache.log4j.Logger;
 
-import sun.tools.tree.AddExpression;
-
-import com.atlassian.uwc.converters.tikiwiki.RegexUtil;
-import com.atlassian.uwc.ui.Page;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ContentHierarchy implements HierarchyBuilder {
 
