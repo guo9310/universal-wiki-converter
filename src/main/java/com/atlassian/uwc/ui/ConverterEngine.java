@@ -8,28 +8,14 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Hashtable;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-import java.util.Set;
-import java.util.TimeZone;
-import java.util.TreeSet;
-import java.util.Vector;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.activation.MimetypesFileTypeMap;
 
+import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang.math.RandomUtils;
 import org.apache.log4j.Logger;
 import org.apache.xmlrpc.XmlRpcException;
 
@@ -386,6 +372,16 @@ public class ConverterEngine implements FeedbackHandler {
 
 			// do final required conversions. This step is seperate, due to state saving issues
 			convertWithRequiredConverters(allPages);
+
+			Set<String> pageNameSet = new HashSet<String>();
+			Random random = new Random();
+			for (Page page : allPages) {
+				if (pageNameSet.contains(page.getName())) {
+					String newName = page.getName() + "_" + random.nextInt(1000);
+					page.setName(newName);
+				}
+				pageNameSet.add(page.getName());
+			}
 
 			//save pages if engine-saves-to-disk property is true. Useful for debugging.
 			//We are making this opt-in because users that don't need it will get a speed boost with fewer disk calls
